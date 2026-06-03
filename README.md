@@ -1,43 +1,59 @@
-# Astro Starter Kit: Minimal
+# hefker.dev
 
-```sh
-pnpm create astro@latest -- --template minimal
+My personal portfolio. Astro + Tailwind v4 + daisyUI static site, deployed on Cloudflare Pages.
+
+Live: <https://hefker.dev>
+
+## Stack
+
+- **Astro 6** (TypeScript, strict mode)
+- **Tailwind CSS 4** via `@tailwindcss/vite` (CSS-first config — no `tailwind.config.js`)
+- **daisyUI 5** with a custom `hefker` theme + auto dark variant (`prefersdark`)
+- **Fontsource** for self-hosted Inter + Fraunces (no Google CDN)
+- Static HTML
+
+## Project structure
+
+```
+src/
+  layouts/
+    Base.astro          # html shell, head meta, background, footer
+  components/
+    Background.astro    # fixed dot-grid + soft gradient
+    Hero.astro
+    ProjectCard.astro
+    Projects.astro
+    About.astro
+    Contact.astro
+  pages/
+    index.astro         # landing
+    resume.astro        # placeholder
+  styles/
+    global.css          # Tailwind entry + daisyUI themes + typography
+public/                 # static assets served at root
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
+Package manager: **pnpm** (required — `pnpm-workspace.yaml` configures the esbuild/sharp build allowlist). Node `>=22.12.0`.
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command | Action |
+|---|---|
+| `pnpm install` | Install deps |
+| `pnpm dev` | Dev server at `localhost:4321` |
+| `pnpm build` | Production build to `./dist/` |
+| `pnpm preview` | Serve built `./dist/` locally |
+| `pnpm astro check` | Type-check `.astro` files |
+| `pnpm astro add <integration>` | Add Astro integration |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Deploy
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Cloudflare Pages auto-builds on push to `main`. PR branches get preview deploys. No CI config yet.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Roadmap
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. ✅ Foundation: scaffold, deploy, custom domain
+2. ✅ v1 content: Hero, Projects, About, Contact, footer
+3. Resume page + sitemap + OG image
+4. `/notes` via Astro Content Collections
+5. Polish: `/uses`, Lighthouse >95, one justified framework island
