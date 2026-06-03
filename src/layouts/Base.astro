@@ -1,0 +1,67 @@
+---
+import "../styles/global.css";
+import Background from "../components/Background.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title,
+  description = "Nelson Aviles — Computer Science student & developer based in Houston. Backend, full-stack, Linux tooling.",
+  path = "/",
+} = Astro.props;
+
+const siteUrl = "https://hefker.dev";
+const canonical = `${siteUrl}${path}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonical} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="hefker.dev" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body class="text-base-content">
+    <Background />
+    <div class="mx-auto max-w-2xl px-6 py-16 sm:py-24">
+      <main id="main">
+        <slot />
+      </main>
+      <footer class="mt-24 border-t border-base-300/60 pt-8 text-sm text-base-content/60">
+        <p>
+          Built with <a
+            href="https://astro.build"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link link-hover">Astro</a
+          > · <a
+            href="https://github.com/HefKer/portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link link-hover">source on GitHub</a
+          > · © 2026
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
