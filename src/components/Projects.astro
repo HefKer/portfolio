@@ -1,0 +1,41 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+const projects = [
+  {
+    name: "nixos-config",
+    description:
+      "Declarative NixOS system config — full Linux desktop and dev environment defined as version-controlled code, redeployable from a single command.",
+    tags: ["Nix", "NixOS", "Linux"],
+    github: "https://github.com/HefKer/nixos-config",
+  },
+  {
+    name: "hefker.dev",
+    description:
+      "This site — Astro + Tailwind on Cloudflare Pages, deployed from a GitHub repo on every push.",
+    tags: ["Astro", "Tailwind", "TypeScript", "Cloudflare Pages"],
+    github: "https://github.com/HefKer/portfolio",
+    live: "https://hefker.dev",
+  },
+  {
+    name: "HackHCC 2026",
+    description:
+      "Co-organized HCC's inaugural hackathon as Director of Logistics — ~300 registered, 100+ attended over 24 hours at West Houston Institute.",
+    tags: [
+      "Event Ops",
+      "Venue",
+      "Sponsor Coordination",
+      "Cross-functional Team",
+    ],
+    github: "https://github.com/HCC-Computer-Science-Association/hackhcc-frontend",
+    live: "https://hackhcc.org",
+  },
+];
+---
+
+<section class="mt-20" aria-labelledby="projects-heading">
+  <h2 id="projects-heading" class="text-2xl font-medium">Selected Work</h2>
+  <div class="mt-6 grid gap-4">
+    {projects.map((p) => <ProjectCard {...p} />)}
+  </div>
+</section>

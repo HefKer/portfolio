@@ -1,0 +1,55 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  tags: string[];
+  github?: string;
+  live?: string;
+}
+
+const { name, description, tags, github, live } = Astro.props;
+---
+
+<article
+  class="rounded-lg border border-base-300/60 bg-base-100/40 p-5 backdrop-blur-sm transition-colors hover:border-base-300"
+>
+  <header class="flex items-baseline justify-between gap-4">
+    <h3 class="text-xl font-medium">{name}</h3>
+    <div class="flex shrink-0 gap-3 text-sm">
+      {
+        live && (
+          <a
+            href={live}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link link-hover"
+          >
+            Live ↗
+          </a>
+        )
+      }
+      {
+        github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link link-hover"
+          >
+            GitHub ↗
+          </a>
+        )
+      }
+    </div>
+  </header>
+  <p class="mt-2 text-base-content/85">{description}</p>
+  {
+    tags.length > 0 && (
+      <ul class="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-base-content/60">
+        {tags.map((t) => (
+          <li>{t}</li>
+        ))}
+      </ul>
+    )
+  }
+</article>
