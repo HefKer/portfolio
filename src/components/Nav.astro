@@ -1,0 +1,43 @@
+---
+const pathname = Astro.url.pathname;
+const isHome = pathname === "/";
+const anchor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
+
+const links = [
+  { href: anchor("projects-heading"), label: "Projects", match: null },
+  { href: anchor("about-heading"), label: "About", match: null },
+  { href: "/resume", label: "Resume", match: "/resume" },
+  { href: anchor("contact-heading"), label: "Contact", match: null },
+] as const;
+
+const isActive = (match: string | null) =>
+  match !== null && pathname === match;
+---
+
+<nav aria-label="Primary" class="flex items-center justify-between gap-6">
+  <a
+    href="/"
+    class="text-sm font-medium tracking-tight link link-hover"
+    aria-label="hefker.dev — home"
+  >
+    hefker.dev
+  </a>
+  <ul class="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
+    {
+      links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class:list={[
+              "link link-hover",
+              isActive(l.match) && "font-medium text-base-content",
+            ]}
+            aria-current={isActive(l.match) ? "page" : undefined}
+          >
+            {l.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

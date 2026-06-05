@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Background from "../components/Background.astro";
+import Nav from "../components/Nav.astro";
 
 interface Props {
   title: string;
@@ -43,7 +44,10 @@ const canonical = `${siteUrl}${path}`;
   </head>
   <body class="text-base-content">
     <Background />
-    <div class="mx-auto max-w-2xl px-6 py-16 sm:py-24">
+    <div class="mx-auto max-w-2xl px-6 py-10 sm:py-12">
+      <header class="mb-12 sm:mb-16">
+        <Nav />
+      </header>
       <main id="main">
         <slot />
       </main>
